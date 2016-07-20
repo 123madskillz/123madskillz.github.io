@@ -23,7 +23,7 @@ function drawWords(){
   translate(0,height-155);
   push();
   translate(200, 62);
-  rotate(sin(tim*17)/10.0);
+  rotate(sin(tim*4)/10.0);
   translate(-200, -62);
   image(happy, 0,0, 400,124);
   pop();
@@ -32,7 +32,7 @@ function drawWords(){
   translate(600,height-300);
   push();
   translate(311, 150);
-  rotate(sin(tim*25)/10.0);
+  rotate(sin(tim*3.7)/10.0);
   translate(-311, -150);
   image(birthday, 0, 0, 622, 300);
   pop();
