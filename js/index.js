@@ -10,18 +10,15 @@ function setup() {
 }
 function draw() {
   c = createCanvas(window.innerWidth, window.innerHeight);
-  
   clear();
   drawBg(100, 100);
-  
   tim += 0.1;
-  
   drawCircles(40, 40, 2, 10, 1, 0.5, 30);
   drawCircles(30, 30, 2.5, 34, 1.3, 0.75, 50);
   drawWords();
   drawCircles(20, 20, 4, 100, 2, 1, 60);
-
 }
+
 function drawWords(){
   translate(0,height-155);
   push();
@@ -31,6 +28,15 @@ function drawWords(){
   image(happy, 0,0, 400,124);
   pop();
   translate(0,(height-155)*-1);
+  
+  translate(600,height-255);
+  push();
+  translate(200, 62);
+  rotate(sin(tim/2)/10.0);
+  translate(-200, -62);
+  image(birthday, 0,0, 400,124);
+  pop();
+  translate(-600,(height-255)*-1);
 }
 function drawBg(xS, yS) {
   //strokeCap(PROJECT);
