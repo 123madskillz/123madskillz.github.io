@@ -14,7 +14,7 @@ function draw() {
   translate(0,height-200);
   push();
   translate(400, 124);
-  rotate(sin(tim*10));
+  rotate(sin(tim*1));
   translate(-400, -124);
   image(img, 0,0);
   pop();
