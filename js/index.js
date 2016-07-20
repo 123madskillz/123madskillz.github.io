@@ -30,7 +30,7 @@ var drawFish = function( fishesArray ) {
     fishesArray[fOff + 0] = fishesArray[fOff + 0] + speed;
     
     centerX = fishesArray[fOff + 0];
-    centerY = fishesArray[fOff + 1]+sin((tim+fOff)*30;
+    centerY = fishesArray[fOff + 1]+sin(tim+fOff)*30;
     bodyLength = fishesArray[fOff + 2]; 
     bodyHeight = fishesArray[fOff + 3]; 
     r = fishesArray[fOff + 4]; 
