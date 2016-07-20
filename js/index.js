@@ -23,7 +23,7 @@ function drawWords(){
   translate(0,height-200);
   push();
   translate(400, 124);
-  rotate(sin(tim/2)/3.0);
+  rotate(sin(tim/2)/10.0);
   translate(-400, -124);
   image(img, 0,0);
   pop();
