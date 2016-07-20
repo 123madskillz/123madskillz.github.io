@@ -12,8 +12,9 @@ function draw() {
   clear();
   drawBg(100, 100);
   push();
-  translate(width/2, height/2);
+  translate(400, 124);
   rotate(tim);
+  translate(-400, -124);
   image(img, 0,0);
   pop();
   tim += 0.1;
