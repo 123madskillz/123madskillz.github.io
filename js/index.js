@@ -14,7 +14,7 @@ function draw() {
   push();
   translate(400, 124);
   rotate(tim);
-  translate(-400, -124);
+  translate(-400, -424);
   image(img, 0,0);
   pop();
   tim += 0.1;
