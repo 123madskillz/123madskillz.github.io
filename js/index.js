@@ -45,7 +45,7 @@ function drawBg(xS, yS) {
   colorMode(HSB, 255);
   for (var y = 0; y < height; y += yS) {
     for (var x = 0; x < width; x += xS) {
-      fill(130, 100, 255, distance(x, y, mouseX, mouseY) / 2);
+      fill(20+y, 100, 255, distance(x, y, mouseX, mouseY) / 2);
       var size = 60 - (2000 / distance(x, y, mouseX, mouseY));
       rect(x + cos(x * y + tim * 1) * 10, y, size, size);
     }
