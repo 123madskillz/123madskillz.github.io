@@ -1,4 +1,73 @@
+var x, y;
+var fishArray = [0, 0, 0, 0, 0, 0, 0, 0];
+var fishesArray = [0, 0, 0, 0, 0, 0, 0, 0];
+var centerX, centerY;
+var bodyLength, bodyHeight;
+var r, g, b;
+var direction, speed;
+var numFish = 0;
 
+var drawFish = function( fishesArray ) {
+    
+
+    
+    for(var i = 0; i < numFish; i++){ 
+      //text(fishesArray, 20, 50);
+    var fOff = 8 * i;
+    
+    speed = 2 * fishesArray[fOff + 7];
+    
+    if (fishesArray[fOff + 0] > 400 - bodyLength/2 && fishesArray[fOff + 7] === 1 ){
+        speed = -2;
+        fishesArray[fOff + 7] = -1;
+    }
+    if (fishesArray[fOff + 0] < 0 + bodyLength/2 && fishesArray[fOff + 7] === -1){
+        speed = 2;
+        fishesArray[fOff + 7] = 1;
+    }
+
+    // move the fish
+    fishesArray[fOff + 0] = fishesArray[fOff + 0] + speed;
+    
+    centerX = fishesArray[fOff + 0];
+    centerY = fishesArray[fOff + 1]+sin((millis()/10)+fOff)*30;
+    bodyLength = fishesArray[fOff + 2]; 
+    bodyHeight = fishesArray[fOff + 3]; 
+    r = fishesArray[fOff + 4]; 
+    g = fishesArray[fOff + 5]; 
+    b = fishesArray[fOff + 6]; 
+    direction = fishesArray[fOff + 7];
+    
+    fill(89, 216, 255);
+    //rect(centerX - bodyLength, centerY - (bodyHeight/2 + 1), bodyLength*2, bodyHeight + 2);
+    fill(r, g, b);
+    // body
+    ellipse(centerX, centerY, bodyLength, bodyHeight);
+    
+    // tail
+    var tailWidth = bodyLength/4;
+    var tailHeight = bodyHeight/2;
+    triangle(centerX-direction*bodyLength/2, centerY,
+         centerX-direction*bodyLength/2-direction*tailWidth, centerY-direction*tailHeight,
+         centerX-direction*bodyLength/2-direction*tailWidth, centerY+direction*tailHeight);
+         
+    // eye
+    fill(33, 33, 33);
+    ellipse(centerX+direction*bodyLength/4, centerY, bodyHeight/5, bodyHeight/5);
+    }
+};
+var fishies = function(){
+    mouseClicked = function() {
+        fishArray = [mouseX, height-round(random(0,300)), round(random(10,100)), round(random(10,100)), 
+            round(random(0,255)), round(random(0,255)), round(random(0,255)), round(random(0,1))*2-1];
+        for (var i = 0; i <= 7; i++) {
+            fishesArray[i + 8 * numFish] = fishArray[i];
+        }
+        numFish += 1;
+    };
+    drawFish( fishesArray );
+
+};
 var tim = 0;
 var happy;
 var birthday;
