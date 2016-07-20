@@ -83,6 +83,7 @@ function draw() {
   drawBg(100, 100);
   tim += 0.1;
   drawCircles(40, 40, 2, 10, 1, 0.5, 30);
+  fishies();
   drawCircles(30, 30, 2.5, 34, 1.3, 0.75, 50);
   drawWords();
   drawCircles(20, 20, 4, 100, 2, 1, 60);
