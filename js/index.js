@@ -1,10 +1,12 @@
 
 var tim = 0;
-var img;
+var happy;
+var birthday;
 function setup() {
   c = createCanvas(window.innerWidth, window.innerHeight);
   c.position(0, 0);
-  img = loadImage("/images/HppyBirth.png");
+  happy = loadImage("/images/HppyBirth.png");
+  birthday = loadImage("/images/Birth.png");
 }
 function draw() {
   c = createCanvas(window.innerWidth, window.innerHeight);
@@ -26,7 +28,7 @@ function drawWords(){
   translate(200, 62);
   rotate(sin(tim/2)/10.0);
   translate(-200, -62);
-  image(img, 0,0, 400,124);
+  image(happy, 0,0, 400,124);
   pop();
   translate(0,(height-200)*-1);
 }
