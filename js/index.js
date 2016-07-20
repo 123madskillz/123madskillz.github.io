@@ -11,14 +11,7 @@ function draw() {
   
   clear();
   drawBg(100, 100);
-  translate(0,height-200);
-  push();
-  translate(400, 124);
-  rotate(sin(tim*1)/3.0);
-  translate(-400, -124);
-  image(img, 0,0);
-  pop();
-  translate(0,(height-200)*-1);
+  drawWords();
   tim += 0.1;
   
   drawCircles(40, 40, 2, 10, 1, 0.5, 30);
@@ -26,7 +19,16 @@ function draw() {
   drawCircles(20, 20, 4, 100, 2, 1, 60);
 
 }
-
+function drawWords(){
+  translate(0,height-200);
+  push();
+  translate(400, 124);
+  rotate(sin(tim/2)/3.0);
+  translate(-400, -124);
+  image(img, 0,0);
+  pop();
+  translate(0,(height-200)*-1);
+}
 function drawBg(xS, yS) {
   //strokeCap(PROJECT);
   //strokeWeight(30);
