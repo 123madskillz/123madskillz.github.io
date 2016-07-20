@@ -1,0 +1,40 @@
+@font-face {
+  font-family: aproreg;
+  src: url("https://4c95d0ec6dcefe3d6c4d74191bd78c322c485be4.googledrive.com/host/0Bxf7lERLL3TlfjlMT28zSU9RdUFqZ2ZzWlFyWFpKMzJIbUpBelFIUnlsbTVHVUlfNVJfaXc/Bariol_Light.otf");
+}
+@font-face {
+  font-family: Avenir;
+  src: url("https://4c95d0ec6dcefe3d6c4d74191bd78c322c485be4.googledrive.com/host/0Bxf7lERLL3TlfjlMT28zSU9RdUFqZ2ZzWlFyWFpKMzJIbUpBelFIUnlsbTVHVUlfNVJfaXc/ProductSans.ttf");
+}
+@font-face {
+  font-family: Joe2;
+  src: url("https://4c95d0ec6dcefe3d6c4d74191bd78c322c485be4.googledrive.com/host/0Bxf7lERLL3TlfjlMT28zSU9RdUFqZ2ZzWlFyWFpKMzJIbUpBelFIUnlsbTVHVUlfNVJfaXc/menlo-regular.ttf");
+}
+canvas {
+  outline: 0px;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+/*  z-index: -99;*/
+}
+#happy {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+ 
+  font-family: Avenir;
+  font-size: 100px;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 1);
+}
+#happyIMG {
+    width: 300px;
+    position: absolute;
+    bottom: 20px;
+ 
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
