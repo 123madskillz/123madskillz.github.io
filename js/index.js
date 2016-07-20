@@ -32,9 +32,9 @@ function drawWords(){
   //bday
   translate(600,height-300);
   push();
-  translate(311, 150);
+  translate(311, 250);
   rotate(sin((tim*1.5)+0)/10.0);
-  translate(-311, -150);
+  translate(-311, -250);
   image(birthday, 0, 0, 622, 300);
   pop();
   translate(-600,(height-300)*-1);
