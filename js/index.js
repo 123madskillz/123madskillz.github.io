@@ -30,14 +30,14 @@ function drawWords(){
   pop();
   translate(0,(height-175)*-1);
   //bday
-  translate(600,height-325);
+  translate(500,height-325);
   push();
   translate(311, 250);
   rotate(sin((tim*1.5)+0)/10.0);
   translate(-311, -250);
   image(birthday, 0, 0, 622, 300);
   pop();
-  translate(-600,(height-325)*-1);
+  translate(-500,(height-325)*-1);
 }
 function drawBg(xS, yS) {
   //strokeCap(PROJECT);
