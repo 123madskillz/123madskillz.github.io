@@ -23,14 +23,14 @@ function draw() {
 
 }
 function drawWords(){
-  translate(0,height-140);
+  translate(0,height-155);
   push();
   translate(200, 62);
   rotate(sin(tim/2)/10.0);
   translate(-200, -62);
   image(happy, 0,0, 400,124);
   pop();
-  translate(0,(height-140)*-1);
+  translate(0,(height-155)*-1);
 }
 function drawBg(xS, yS) {
   //strokeCap(PROJECT);
