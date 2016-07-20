@@ -11,12 +11,14 @@ function draw() {
   
   clear();
   drawBg(100, 100);
+  translate(0,height-200);
   push();
   translate(400, 124);
   rotate(tim);
-  translate(-400, -424);
+  translate(-400, -124);
   image(img, 0,0);
   pop();
+  translate(0,(height-200)*-1);
   tim += 0.1;
   
   drawCircles(40, 40, 2, 10, 1, 0.5, 30);
