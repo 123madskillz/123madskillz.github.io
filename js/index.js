@@ -21,7 +21,7 @@ function draw() {
 
 }
 function drawWords(){
-  translate(0,height-200);
+  translate(0,height-160);
   push();
   translate(200, 62);
   rotate(sin(tim/2)/10.0);
