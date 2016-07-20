@@ -20,19 +20,20 @@ function draw() {
 }
 
 function drawWords(){
+  //happy
   translate(0,height-155);
   push();
   translate(200, 62);
-  rotate(sin((tim*3.7)+3.14)/10.0);
+  rotate(sin((tim*1.5)+3.14)/10.0);
   translate(-200, -62);
   image(happy, 0,0, 400,124);
   pop();
   translate(0,(height-155)*-1);
-  
+  //bday
   translate(600,height-300);
   push();
   translate(311, 150);
-  rotate(sin((tim*3.7)+0)/10.0);
+  rotate(sin((tim*1.5)+0)/10.0);
   translate(-311, -150);
   image(birthday, 0, 0, 622, 300);
   pop();
