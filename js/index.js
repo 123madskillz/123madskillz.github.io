@@ -58,7 +58,7 @@ var drawFish = function( fishesArray ) {
 };
 var fishies = function(){
     mouseClicked = function() {
-        fishArray = [mouseX, height-round(random(0,300)), round(random(10,100)), round(random(10,100)), 
+        fishArray = [mouseX, height-round(random(0,100)), round(random(10,50)), round(random(10,50)), 
             round(random(0,255)), round(random(0,255)), round(random(0,255)), round(random(0,1))*2-1];
         for (var i = 0; i <= 7; i++) {
             fishesArray[i + 8 * numFish] = fishArray[i];
