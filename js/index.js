@@ -21,23 +21,23 @@ function draw() {
 
 function drawWords(){
   //happy
-  translate(0,height-155);
+  translate(0,height-175);
   push();
   translate(200, 62);
   rotate(sin((tim*1.5)+1.1)/10.0);
   translate(-200, -62);
   image(happy, 0,0, 400,124);
   pop();
-  translate(0,(height-155)*-1);
+  translate(0,(height-175)*-1);
   //bday
-  translate(600,height-300);
+  translate(600,height-350);
   push();
   translate(311, 250);
   rotate(sin((tim*1.5)+0)/10.0);
   translate(-311, -250);
   image(birthday, 0, 0, 622, 300);
   pop();
-  translate(-600,(height-300)*-1);
+  translate(-600,(height-350)*-1);
 }
 function drawBg(xS, yS) {
   //strokeCap(PROJECT);
