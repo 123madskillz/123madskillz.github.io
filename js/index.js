@@ -45,7 +45,7 @@ function drawBg(xS, yS) {
   colorMode(HSB, 255);
   for (var y = 0; y < height; y += yS) {
     for (var x = 0; x < width; x += xS) {
-      fill((20+y)%255, 100, 255, distance(x, y, mouseX, mouseY) / 2);
+      fill((20+(y)/30)%255, 100, 255, distance(x, y, mouseX, mouseY) / 2);
       var size = 60 - (2000 / distance(x, y, mouseX, mouseY));
       rect(x + cos(x * y + tim * 1) * 10, y, size, size);
     }
@@ -81,7 +81,6 @@ function drawCircles(xS, yS, h, speed, freq, amp, alpha) {
     var xN = x + xS;
     var vX = (x * freq) + (tim * speed);
     var vXN = ((xN) * freq) + (tim * speed);
-
     var yPos = height - ((y * ((sin(vX / 100.0) * amp) + h) / 2.0) / 2) - 7;
     var yPosN = height - ((y * ((sin(vXN / 100.0) * amp) + h) / 2.0) / 2) - 7;
     var size = 10;
