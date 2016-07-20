@@ -24,7 +24,7 @@ function drawWords(){
   translate(0,height-155);
   push();
   translate(200, 62);
-  rotate(sin((tim*1.5)+1.57)/10.0);
+  rotate(sin((tim*1.5)+1.1)/10.0);
   translate(-200, -62);
   image(happy, 0,0, 400,124);
   pop();
