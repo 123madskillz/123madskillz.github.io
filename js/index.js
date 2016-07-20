@@ -4,7 +4,7 @@ var img;
 function setup() {
   c = createCanvas(window.innerWidth, window.innerHeight);
   c.position(0, 0);
-  img = loadImage("http://www.fritolay.com/images/default-source/blue-bag-image/doritos-nacho-cheese.png?sfvrsn=2");
+  img = loadImage("/images/HppyBirth.png");
 }
 function draw() {
   c = createCanvas(window.innerWidth, window.innerHeight);
