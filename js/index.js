@@ -72,6 +72,7 @@ var tim = 0;
 var happy;
 var birthday;
 function setup() {
+    frameRate(30);
   c = createCanvas(window.innerWidth, window.innerHeight);
   c.position(0, 0);
   happy = loadImage("/images/HppyBirth.png");
