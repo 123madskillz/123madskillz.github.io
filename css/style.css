@@ -1,40 +1,58 @@
-@font-face {
-  font-family: aproreg;
-  src: url("https://4c95d0ec6dcefe3d6c4d74191bd78c322c485be4.googledrive.com/host/0Bxf7lERLL3TlfjlMT28zSU9RdUFqZ2ZzWlFyWFpKMzJIbUpBelFIUnlsbTVHVUlfNVJfaXc/Bariol_Light.otf");
-}
-@font-face {
-  font-family: Avenir;
-  src: url("https://4c95d0ec6dcefe3d6c4d74191bd78c322c485be4.googledrive.com/host/0Bxf7lERLL3TlfjlMT28zSU9RdUFqZ2ZzWlFyWFpKMzJIbUpBelFIUnlsbTVHVUlfNVJfaXc/ProductSans.ttf");
-}
-@font-face {
-  font-family: Joe2;
-  src: url("https://4c95d0ec6dcefe3d6c4d74191bd78c322c485be4.googledrive.com/host/0Bxf7lERLL3TlfjlMT28zSU9RdUFqZ2ZzWlFyWFpKMzJIbUpBelFIUnlsbTVHVUlfNVJfaXc/menlo-regular.ttf");
-}
-canvas {
-  outline: 0px;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-/*  z-index: -99;*/
-}
-#happy {
-  position: absolute;
-  top: 30%;
-  left: 35%;
- 
-  font-family: Avenir;
-  font-size: 100px;
+#together{
+  font-family: 'lato', sans-serif;
+	
   text-align: center;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 1);
+  font-size: 100px;
+  width: 600px;
+  display: inline-block;
+  vertical-align: middle;
 }
-#happyIMG {
-    width: 300px;
-    position: absolute;
-    bottom: 20px;
- 
-    left: 0;
-    right: 0;
-
-    margin: auto;
+p{
+	font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-size: 90px;
 }
 
+a{
+  
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid black
+}
+#content {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  right: 0px;
+  padding: 0px;
+  transform: translateY(-50%);
+  resize: vertical;
+  background: rgba(255,255,255,0);
+}
+
+#container {
+		color: white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+    z-index: 10;
+    font-family: 'lato', sans-serif;
+    text-align: center;
+}
+
+#fixedBottom{
+  z-index: 10;
+  position: fixed;
+  top: 88%;
+  left: 0;
+  width: 100%;
+  font-size: 35px;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  background: rgba(255,255,255, .8);
+  padding: 30px 30px 30px 30px;
+}
