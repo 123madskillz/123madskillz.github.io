@@ -1,166 +1,169 @@
-var x, y;
-var fishArray = [0, 0, 0, 0, 0, 0, 0, 0];
-var fishesArray = [0, 0, 0, 0, 0, 0, 0, 0];
-var centerX, centerY;
-var bodyLength, bodyHeight;
-var r, g, b;
-var direction, speed;
-var numFish = 0;
-
-var drawFish = function( fishesArray ) {
-    
-
-    
-    for(var i = 0; i < numFish; i++){ 
-      //text(fishesArray, 20, 50);
-    var fOff = 8 * i;
-    
-    speed = 2 * fishesArray[fOff + 7];
-    
-    if (fishesArray[fOff + 0] > 400 - bodyLength/2 && fishesArray[fOff + 7] === 1 ){
-        speed = -2;
-        fishesArray[fOff + 7] = -1;
-    }
-    if (fishesArray[fOff + 0] < 0 + bodyLength/2 && fishesArray[fOff + 7] === -1){
-        speed = 2;
-        fishesArray[fOff + 7] = 1;
-    }
-
-    // move the fish
-    fishesArray[fOff + 0] = fishesArray[fOff + 0] + speed;
-    
-    centerX = fishesArray[fOff + 0];
-    centerY = fishesArray[fOff + 1]+sin(tim+fOff)*30;
-    bodyLength = fishesArray[fOff + 2]; 
-    bodyHeight = fishesArray[fOff + 3]; 
-    r = fishesArray[fOff + 4]; 
-    g = fishesArray[fOff + 5]; 
-    b = fishesArray[fOff + 6]; 
-    direction = fishesArray[fOff + 7];
-    
-    fill(89, 216, 255);
-    //rect(centerX - bodyLength, centerY - (bodyHeight/2 + 1), bodyLength*2, bodyHeight + 2);
-    fill(r, g, b);
-    // body
-    ellipse(centerX, centerY, bodyLength, bodyHeight);
-    
-    // tail
-    var tailWidth = bodyLength/4;
-    var tailHeight = bodyHeight/2;
-    triangle(centerX-direction*bodyLength/2, centerY,
-         centerX-direction*bodyLength/2-direction*tailWidth, centerY-direction*tailHeight,
-         centerX-direction*bodyLength/2-direction*tailWidth, centerY+direction*tailHeight);
-         
-    // eye
-    fill(33, 33, 33);
-    ellipse(centerX+direction*bodyLength/4, centerY, bodyHeight/5, bodyHeight/5);
-    }
-};
-var fishies = function(){
-    mouseClicked = function() {
-        fishArray = [mouseX, height-round(random(0,100)), round(random(10,50)), round(random(10,50)), 
-            round(random(0,255)), round(random(0,255)), round(random(0,255)), round(random(0,1))*2-1];
-        for (var i = 0; i <= 7; i++) {
-            fishesArray[i + 8 * numFish] = fishArray[i];
-        }
-        numFish += 1;
-    };
-    drawFish( fishesArray );
-
-};
-var tim = 0;
-var happy;
-var birthday;
+var gTime; //Global time
+var fire; //list of current fireworks
+var pressed;
+var speed = 10;
 function setup() {
-    frameRate(30);
   c = createCanvas(window.innerWidth, window.innerHeight);
   c.position(0, 0);
-  happy = loadImage("/images/HppyBirth.png");
-  birthday = loadImage("/images/Birth.png");
+  gTime = 0;
+  fire = [];
+  pressed = false;
+  background(0);
 }
+
 function draw() {
-  c = createCanvas(window.innerWidth, window.innerHeight);
-  clear();
-  drawBg(100, 100);
-  tim += 0.08;
-  drawCircles(40, 40, 2, 10, 1, 0.5, 30);
-  fishies();
-  drawCircles(30, 30, 2.5, 34, 1.3, 0.75, 50);
-  drawWords();
-  drawCircles(20, 20, 4, 100, 2, 1, 60);
-}
-
-function drawWords(){
-  //happy
-  translate(0,height-175);
-  push();
-  translate(200, 62);
-  rotate(sin((tim*1.5)+1.1)/10.0);
-  translate(-200, -62);
-  image(happy, 0,0, 400,124);
-  pop();
-  translate(0,(height-175)*-1);
-  //bday
-  translate(500,height-325);
-  push();
-  translate(311, 250);
-  rotate(sin((tim*1.5)+0)/10.0);
-  translate(-311, -250);
-  image(birthday, 0, 0, 622, 300);
-  pop();
-  translate(-500,(height-325)*-1);
-}
-function drawBg(xS, yS) {
-  //strokeCap(PROJECT);
-  //strokeWeight(30);
+  blendMode(BLEND)
   colorMode(HSB, 255);
-  for (var y = 0; y < height; y += yS) {
-    for (var x = 0; x < width; x += xS) {
-      fill((0+(y)/15)%255, 100, 255, distance(x, y, mouseX, mouseY) / 2);
-      var size = 60 - (2000 / distance(x, y, mouseX, mouseY));
-      rect(x + cos(x * y + tim * 1) * 10, y, size, size,10,10);
+  fill(0, 0, 0, 100);
+  rect(0, 0, width, height)
+  renderStars()
+  fire = update(fire);
+  //stars();
+  renderFire(fire);
+  if ((touches.length > 0 || mouseIsPressed) && !pressed) {
+    fire.push(
+      createFire(
+        0,
+        touches.length > 0 ? touches[0].x : mouseX,
+        height,
+        random(-8, 8),
+        random(50, 80),
+        random(0, 255),
+        random(155, 255),
+        random(200, 255)
+      )
+    );
+  }
+  if(random(0,100)<4){
+    fire.push(
+      createFire(
+        0,
+        random(0,width),
+        height,
+        random(-8, 8),
+        random(50, 80),
+        random(0, 255),
+        random(155, 255),
+        random(200, 255)
+      )
+    );
+  }
+}
+function createFire(t, x, y, xVel, yVel, h0, s0, b0) {
+  pressed = true;
+  return {
+    hue: h0,
+    sat: s0,
+    bri: b0,
+    type: t,
+    state: 0, //0 is for rocket state, 1 for explosion, 2 for gas state
+    iTime: 0, //increases by one every frame and changes state and then resets when needed
+    x: x,
+    y: y,
+    xVel: xVel,
+    yVel: yVel,
+    size: random(3, 7),
+
+    hDelta: random(0, 100)
+  };
+}
+function mouseReleased() {
+  pressed = false;
+}
+function update(f) {
+  for (var i = 0; i < f.length; i++) {
+    if (f[i].type == 0) {
+      if (f[i].state == 0) {
+        f[i].iTime += 1;
+        if (f[i].iTime > random(50, 200)) f[i].state += 1;
+        f[i].x += f[i].xVel / speed;
+        f[i].y -= f[i].yVel / speed;
+        f[i].yVel -= 9.8 / speed;
+      } else if (f[i].state == 1) {
+        if (random(0, 100) < 50) {
+          parts = random(5, 10);
+          for (var z = 0; z < parts; z++) {
+            f.push(
+              createFire(
+                10,
+                f[i].x,
+                f[i].y,
+                20 * sin(parts / z * 2 * PI),
+                20 * cos(parts / z * 2 * PI) + 15,
+                f[i].hue,
+                f[i].sat,
+                f[i].bri
+              )
+            );
+          }
+        } else {
+          parts = 100;
+          for (var z = 0; z < parts; z++) {
+            a = random(0, 1);
+            b = random(0, 1);
+            c = a;
+            if (b < a) {
+              a = b;
+              b = c;
+            }
+            f.push(
+              createFire(
+                11,
+                f[i].x,
+                f[i].y,
+                random(1, 20) * sin(parts / z * 2 * PI),
+                random(1, 20) * cos(parts / z * 2 * PI) + 15,
+                f[i].hue,
+                f[i].sat,
+                f[i].bri
+              )
+            );
+          }
+        }
+        f.splice(i, 1);
+      }
+    } else {
+      if (f[i].state == 0) {
+        f[i].iTime += 1;
+        if (f[i].iTime > 100) f[i].state += 1;
+        f[i].x += f[i].xVel / speed;
+        f[i].y -= f[i].yVel / speed;
+        f[i].yVel -= 9.8 / speed;
+      } else {
+        f.splice(i, 1);
+      }
     }
   }
-  fill(40, 150, 255, 200);
-  ellipse(mouseX, mouseY, 100, 100);
-  for (var i = 0; i < 10; i++) {
-    fill(30 + (i * 1), 255, 255, 20 - (i * 2));
-    ellipse(mouseX, mouseY, 150 + (i * 50), 150 + (i * 50));
-  }
+  return f;
 }
 
-function drawCircles(xS, yS, h, speed, freq, amp, alpha) {
+function renderFire(fire) {
+  ;
+  blendMode(ADD);
+  for (var i = 0; i < fire.length; i++) {
+    var z = fire[i];
+    if (z.type == 0) renderGeneric(z);
+    if (z.type == 10) renderParticle(z, 10);
+    if (z.type == 11) renderParticle(z, z.size);
+  }
+}
+function renderGeneric(f) {
   colorMode(HSB, 255);
-  //draw water bubbles
+  fill(f.hue, 50, 255);
   noStroke();
-  for (var x = 0; x < width; x += xS) {
-    for (var y = 0; y < yS * 5; y += yS) {
-      fill(132, 255, 255 - (sin((tim * 1) + x + y + (sin(x / y)) * 100) * 50), alpha);
-      var vX = (x * freq) + (tim * speed);
-      var xPos = x;
-      var yPos = height - ((y * ((sin(vX / 100.0) * amp) + h) / 2.0) / 2) - 7;
-      var size = xS + sin(tim + y + sin(x) * 30) * 10 + (sin(vX / 100.0) + 1) * 10;
-      ellipse(xPos, yPos, size, size);
-    }
-  }
-  //draw sin wave
-  strokeCap(SQUARE);
-  var y = yS * 5;
-  strokeWeight(10);
-  for (var x = 0; x < width; x += xS) {
-    stroke(130, 255, 200, alpha);
-    var xN = x + xS;
-    var vX = (x * freq) + (tim * speed);
-    var vXN = ((xN) * freq) + (tim * speed);
-    var yPos = height - ((y * ((sin(vX / 100.0) * amp) + h) / 2.0) / 2) - 7;
-    var yPosN = height - ((y * ((sin(vXN / 100.0) * amp) + h) / 2.0) / 2) - 7;
-    var size = 10;
-
-    line(x, yPos, xN, yPosN);
-  }
-  noStroke();
+  ellipse(f.x, f.y, 5, 5);
 }
 
-function distance(inx, iny, nx, ny) {
-  return sqrt((inx - nx) * (inx - nx) + (iny - ny) * (iny - ny));
+function renderParticle(f, s) {
+  colorMode(HSB, 255);
+  fill(f.hue, min(f.sat+100,255), 255, max(10, 255 - f.iTime * 3));
+  noStroke();
+  ellipse(f.x, f.y, s, s);
+}
+
+function renderStars(){
+  for( var z = 0; z < height; z +=3){
+    fill(((-z+3500)/18),200,40,50)
+    rect(0,z*2,width,4)
+  }
 }
